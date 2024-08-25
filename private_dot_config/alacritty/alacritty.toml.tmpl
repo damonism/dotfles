@@ -1,0 +1,33 @@
+import = ["~/.config/alacritty/catppuccin/catppuccin-mocha.toml"]
+
+[colors]
+draw_bold_text_with_bright_colors = false
+
+[font]
+size = 12.0
+
+[font.normal]
+family = "ZedMono Nerd Font Mono"
+style = "Regular"
+
+[window]
+{{ if eq .chezmoi.os "darwin" }}
+# darwin
+decorations = "buttonless"
+{{ else if eq .chezmoi.os "linux" }}
+# linux
+decorations = "none"
+{{ else }}
+# other operating system
+{{ end }}
+dynamic_padding = false
+dynamic_title = true
+opacity = 0.95
+
+[window.dimensions]
+columns = 160
+lines = 48
+
+[window.padding]
+x = 2
+y = 2

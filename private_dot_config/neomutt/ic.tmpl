@@ -1,0 +1,24 @@
+{{ (bitwarden "item" "c525ed7a-b1fc-4815-ac75-b1a60087a512").notes }}
+
+bind index,pager g noop
+bind index,pager C noop
+bind index,pager M noop
+
+macro index,pager gi "<change-folder>=INBOX<enter>" "go to inbox"
+macro index,pager Mi ";<save-message>=INBOX<enter><enter>" "move mail to inbox"
+macro index,pager Ci ";<copy-message>=INBOX<enter>" "copy mail to inbox"
+macro index,pager gs "<change-folder>=Sent Messages<enter>" "go to sent"
+macro index,pager Ms ";<save-message>=Sent Messages<enter><enter>" "move mail to sent"
+macro index,pager Cs ";<copy-message>=Sent Messages<enter>" "copy mail to sent"
+macro index,pager gd "<change-folder>=Drafts<enter>" "go to drafts"
+macro index,pager Md ";<save-message>=Drafts<enter><enter>" "move mail to drafts"
+macro index,pager Cd ";<copy-message>=Drafts<enter>" "copy mail to drafts"
+macro index,pager gS "<change-folder>=Junk<enter>" "go to spam"
+macro index,pager MS ";<save-message>=Junk<enter><enter>" "move mail to spam"
+macro index,pager CS ";<copy-message>=Junk<enter>" "copy mail to spam"
+macro index,pager ga "<change-folder>=Archive<enter>" "go to archive"
+macro index,pager Ma ";<save-message>=Archive<enter><enter>" "move mail to archive"
+macro index,pager Ca ";<copy-message>=Archive<enter>" "copy mail to archive"
+
+# vim: syntax=neomuttrc
+

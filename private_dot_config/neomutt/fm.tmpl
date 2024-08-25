@@ -1,0 +1,29 @@
+# vim: filetype=neomuttrc
+
+{{ (bitwarden "item" "19633e2e-0b85-4748-8bb1-b1a600875fc2").notes }}
+
+bind index,pager g noop
+bind index,pager M noop
+bind index,pager C noop
+
+macro index,pager gi "<change-folder>=INBOX<enter>" "go to inbox"
+macro index,pager Mi ";<save-message>=INBOX<enter><enter>" "move mail to inbox"
+macro index,pager Ci ";<copy-message>=INBOX<enter>" "copy mail to inbox"
+macro index,pager gs "<change-folder>=Sent Items<enter>" "go to sent"
+macro index,pager Ms ";<save-message>=Sent Items<enter><enter>" "move mail to sent"
+macro index,pager Cs ";<copy-message>=Sent Items<enter>" "copy mail to sent"
+macro index,pager gd "<change-folder>=Drafts<enter>" "go to drafts"
+macro index,pager Md ";<save-message>=Drafts<enter><enter>" "move mail to drafts"
+macro index,pager Cd ";<copy-message>=Drafts<enter>" "copy mail to drafts"
+macro index,pager gS "<change-folder>=Junk Mail<enter>" "go to spam"
+macro index,pager MS ";<save-message>=Junk Mail<enter><enter>" "move mail to spam"
+macro index,pager CS ";<copy-message>=Junk Mail<enter>" "copy mail to spam"
+macro index,pager ga "<change-folder>=Archive<enter>" "go to archive"
+macro index,pager Ma ";<save-message>=Archive<enter><enter>" "move mail to archive"
+macro index,pager Ca ";<copy-message>=Archive<enter>" "copy mail to archive"
+macro index,pager gb "<change-folder>=Bank<enter>" "go to bank"
+macro index,pager Mb ";<save-message>=Bank<enter><enter>" "move mail to bank"
+macro index,pager Cb ";<copy-message>=Bank<enter>" "copy mail to bank"
+macro index,pager gr "<change-folder>=Receipts<enter>" "go to receipts"
+macro index,pager Mr ";<save-message>=Receipts<enter><enter>" "move mail to receipts"
+macro index,pager Cr ";<copy-message>=Receipts<enter>" "copy mail to receipts"

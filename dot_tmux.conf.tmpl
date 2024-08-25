@@ -1,0 +1,188 @@
+# C-b is not acceptable -- Vim uses it
+set-option -g prefix C-a
+bind-key C-a last-window
+
+# Start numbering at 1
+set -g base-index 1
+
+# Allows for faster key repetition
+set -s escape-time 0
+
+# Rather than constraining window size to the maximum size of any client 
+# connected to the *session*, constrain window size to the maximum size of any 
+# client connected to *that window*. Much more reasonable.
+setw -g aggressive-resize on
+
+# Allows us to use C-a a <command> to send commands to a TMUX session inside 
+# another TMUX session
+bind-key a send-prefix
+
+# Example of using a shell command in the status line
+#set -g status-right "#[fg=yellow]#(uptime | cut -d ',' -f 2-)"
+
+# force a reload of the config file
+unbind r
+bind r source-file ~/.tmux.conf \; display-message "~/.tmux.conf reloaded"
+
+# Automatically re-number windows when one is deleted
+set-option -g renumber-windows on
+
+# Open new window or split window and run command
+bind-key W command-prompt "split-window -c \"#{pane_current_path}\" -h %1"
+bind-key N command-prompt "new-window %1"
+
+# From https://stackoverflow.com/questions/35016458/how-to-write-if-statement-in-tmux-conf-to-set-different-options-for-different-t#40902312
+run-shell 'tmux setenv -g TMUX_VERSION $(tmux -V | \
+                            sed -En "s/^tmux ([0-9]+(.[0-9]+)?).*/\1/p")'
+
+# In version 2.1 "mouse" replaced the previous 4 mouse options
+if-shell -b '[ "$(echo "$TMUX_VERSION >= 2.1" | bc)" = 1 ]' \
+  "set -g mouse on"
+
+# bind-key syntax changed in 2.4 -- selection / copy / paste
+if-shell -b '[ "$(echo "$TMUX_VERSION < 2.4" | bc)" = 1 ]' \
+   'bind-key -t vi-copy v   begin-selection; \
+   bind-key -t vi-copy C-v rectangle-toggle; \
+   bind-key -t vi-copy y   copy-selection' \
+   'bind-key -T copy-mode-vi v   send -X begin-selection; \
+   bind-key -T copy-mode-vi V   send -X select-line; \
+   bind-key -T copy-mode-vi C-v send -X rectangle-toggle; \
+   bind-key -T copy-mode-vi y   send -X copy-selection'
+
+# set -g mouse on
+setw -g mode-keys vi
+bind P paste-buffer
+# bind-key -t vi-copy 'v' begin-selection
+# bind-key -t vi-copy 'y' copy-selection
+# bind-key -t vi-copy 'r' rectangle-toggle
+
+# Following from:
+# http://lucasfcosta.com/2019/02/10/terminal-guide-2019.html
+
+# vi keys for switching panes
+bind-key h select-pane -L
+bind-key j select-pane -D
+bind-key k select-pane -U
+bind-key l select-pane -R
+
+# Splitting panes.
+bind - split-window -v
+bind | split-window -h
+
+# shift-movement keys will resize panes
+bind J resize-pane -D 5
+bind K resize-pane -U 5
+bind H resize-pane -L 5
+bind L resize-pane -R 5
+
+# https://superuser.com/questions/1098077/how-to-keep-terminal-window-title-in-sync-with-tmux-window
+set-option -g set-titles on
+set-option -g set-titles-string "tmux @ #h : #I / #W"
+
+# loud or quiet?
+set-option -g visual-activity off
+set-option -g visual-bell off
+set-option -g visual-silence off
+set-window-option -g monitor-activity off
+set-option -g bell-action none
+
+# Needed for zsh-titles
+set -g allow-rename on
+
+# set -g default-terminal "screen-256color"
+# set -g default-terminal "tmux-256color"
+set -g terminal-overrides ',xterm-256color:Tc'
+set -g default-terminal "screen-256color"
+
+# Status bar on bottom
+set -g status-position bottom
+set -g status-right-length 60
+set -g status-left-length 40
+set -g status-justify left
+set -g status-interval 1
+
+{{ if eq .chezmoi.os "darwin" }}
+# MacOS-specific tmux configuration
+
+# Enable 24-bit colours
+set -g terminal-overrides tmux-256color:Tc
+
+# Mouse mode
+set -g mouse on
+setw -g mode-keys vi
+bind-key -T edit-mode-vi Up send-keys -X history-up
+bind-key -T edit-mode-vi Down send-keys -X history-down
+bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
+
+# Copy and paste
+set -g default-command "reattach-to-user-namespace -l ${SHELL}"
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"
+bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+bind-key -T copy-mode-vi [ send-keys -X begin-selection
+bind-key -T copy-mode-vi ] send-keys -X copy-selection
+
+{{ else if eq .chezmoi.os "linux" }}
+# linux
+{{ else }}
+# other operating system
+{{ end }}
+
+# bind-key I run-shell 'tmux set-buffer -b pass "$(bw get password 18267036-0499-4d97-b674-ab0600a0af8e)"' \; paste-buffer -b pass -d
+
+# Screensaver
+set -g lock-command "cmatrix -sba"
+set -g lock-after-time 300
+# set -g lock-server on
+
+# tmux theme options
+set -goq @themepack-status-left-area-left-format "#h"
+set -goq @themepack-status-left-area-middle-format "#(whoami)"
+set -goq @themepack-status-left-area-right-format "#I:#P"
+set -goq @themepack-status-right-area-left-format "%H:%M:%S"
+set -goq @themepack-status-right-area-middle-format "%d-%b-%y"
+set -goq @themepack-status-right-area-right-format "#{battery_icon} #{battery_percentage} #{battery_remain}"
+# set -goq @themepack-status-right-area-right-format "#S"
+set -goq @themepack-window-status-current-format "#I  #{=/15/…:window_name}"
+set -goq @themepack-window-status-format "#I  #{=/15/…:window_name} #F"
+set -goq @theme-status-justify left
+
+# tmux-battery short time remaining format
+set -g @batt_remain_short 'true'
+
+# set -g @themepack 'powerline/double/magenta'
+set -g @themepack 'powerline/block/blue'
+
+# Resurrect tmux session (required for tmux-continuum)
+# set -g @continuum-restore 'on'
+set -g @continuum-boot 'on'
+# set -g @continuum-boot-options 'alacritty'
+set -g @resurrect-capture-pane-contents 'on'
+
+set -g @bw-session 'BW_SESSION'
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'Alkindi42/tmux-bitwarden'
+# set -g @plugin 'tmux-plugins/t:ux-sensible'
+set -g @plugin 'jimeh/tmux-themepack'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-battery'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @plugin 'catppuccin/tmux'
+set -g @plugin 'soyuka/tmux-current-pane-hostname'
+
+# Catppuccin theme - https://github.com/catppuccin/tmux
+set -g @catppuccin_window_default_fill "number"
+# set -g @catppuccin_window_current_fill "all"
+set -g @catppuccin_window_current_text "#W"
+set -g @catppuccin_window_default_text "#W"
+
+set -g @catppuccin_status_modules_right "application host date_time"
+set -g @catppuccin_status_left_separator  ""
+set -g @catppuccin_status_right_separator " "
+set -g @catppuccin_status_fill "all"
+set -g @catppuccin_status_connect_separator "yes"
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run '~/.tmux/plugins/tpm/tpm'

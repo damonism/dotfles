@@ -1,0 +1,73 @@
+set nocompatible	" be iMproved, required
+filetype off		" required
+
+if &shell =~# 'fish$'
+    set shell=sh
+endif
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+
+" Launch vim and run :PluginInstall
+" To install from command line: vim +PluginInstall +qall
+
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" Syntax highlighting for chezmoi files
+Plugin 'alker0/chezmoi.vim'
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'balanceiskey/vim-framer-syntax'
+Plugin 'tpope/vim-sensible'
+Plugin 'junegunn/fzf'
+"
+" Colour Schemes
+Plugin 'dracula/vim', { 'name': 'dracula' }
+Plugin 'NLKNguyen/papercolor-theme'
+" Plugin 'oceanic-next'
+Plugin 'joshdick/onedark.vim'
+" Plugin 'nord-vim'
+Plugin 'drewtempelmeyer/palenight.vim'
+" Plugin 'quantum.vim'
+" Plugin 'ayu-vim'
+Plugin 'ayu-theme/ayu-vim'
+Plugin 'catppuccin/vim', { 'name': 'catppuccin' }
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+syntax on                    " Syntax highlighting
+" Put your non-Plugin stuff after this line
+
+" The first [ is entered with CTRL+V,ESC
+set t_8f=[38;2;%lu;%lu;%lum
+set t_8b=[48;2;%lu;%lu;%lum
+
+set termguicolors
+" set background=[light|dark]
+" colorscheme command
+
+" https://github.com/NLKNguyen/papercolor-theme
+set background=dark
+" colorscheme PaperColor
+" colorscheme OceanicNext
+" colorscheme onedark
+" colorscheme nord
+" let ayucolor="light"  " for light version of theme
+" let ayucolor="mirage" " for mirage version of theme
+let ayucolor="dark"   " for dark version of theme
+" colorscheme ayu
+" color vim-framer-syntax
+colorscheme catppuccin_mocha
+
+" Mouse scrolling in all modes (scrolls vim in tmux windows)
+set mouse=a
+
+" Dont automatically insert comment
+" from http://vim.wikia.com/wiki/Disable_automatic_comment_insertion
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=let

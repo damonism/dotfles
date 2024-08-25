@@ -1,0 +1,6 @@
+{{- $email := promptStringOnce . "email" "Email address" -}}
+{{- $bwlogin := promptStringOnce . "bwlogin" "BitWarden Login" -}}
+
+[data]
+    email = {{ $email | quote }}
+    bwlogin = {{ $bwlogin | quote }}

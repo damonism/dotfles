@@ -1,0 +1,10 @@
+alias la="ls -a"
+alias rm="rm -i"
+alias cmedit="chezmoi edit --apply"
+{{ if eq .chezmoi.os "darwin" }}
+# Make BitWarden CLI work
+alias bw='NODE_OPTIONS="--no-deprecation" bw'
+{{ else if eq .chezmoi.os "linux" -}}
+alias pbcopy="wl-copy"
+{{ end }}
+

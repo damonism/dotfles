@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Install Vim Vundle plugins when .vimrc is modified
+# .vimrc hash: {{ include "dot_vimrc" | sha256sum }}
+vim +PluginInstall +qall
+

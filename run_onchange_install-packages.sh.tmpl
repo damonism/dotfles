@@ -1,0 +1,22 @@
+#!/bin/sh
+
+{{ if eq .chezmoi.os "darwin" -}}
+brew update && brew upgrade
+
+# Install packages
+brew install jq fzf neomutt w3m
+
+# Install casks
+brew install --cask alacritty emacs
+# Install fonts
+brew install --cask font-zed-mono-nerd-font
+{{ else if eq .chezmoi.os "linux" -}}
+sudo apt update && sudo apt upgrade
+
+sudo apt install jq fzf neomutt w3m wl-clipboard emacs
+# Install fonts
+# wget -qO- https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/ZedMono.zip | busybox unzip -o -d .local/share/fonts/ZedMono -
+fc-cache -f -v
+
+{{ end -}}
+
