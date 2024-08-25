@@ -13,7 +13,8 @@ brew install --cask font-zed-mono-nerd-font
 {{ else if eq .chezmoi.os "linux" -}}
 sudo apt update && sudo apt upgrade
 
-sudo apt install jq fzf neomutt w3m wl-clipboard emacs
+# libfuse2 and zlib1g-dev are required for AppImage apps like Obsdidan
+sudo apt install jq fzf neomutt w3m wl-clipboard emacs libfuse2 zlib1g-dev
 # Install fonts
 # wget -qO- https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/ZedMono.zip | busybox unzip -o -d .local/share/fonts/ZedMono -
 fc-cache -f -v
