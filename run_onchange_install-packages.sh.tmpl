@@ -1,22 +1,44 @@
 #!/bin/sh
 
+# Packages are listed in .chezmoidata.yaml
+
 {{ if eq .chezmoi.os "darwin" -}}
 brew update && brew upgrade
 
 # Install packages
-brew install jq fzf neomutt w3m
+brew install {{ (uniq (concat .packages.common .packages.darwin.brews)) | join " " }} 
 
 # Install casks
-brew install --cask alacritty emacs
-# Install fonts
-brew install --cask font-zed-mono-nerd-font
-{{ else if eq .chezmoi.os "linux" -}}
-sudo apt update && sudo apt upgrade
+brew install --cask {{ .packages.darwin.casks | join " " }}
 
-# libfuse2 and zlib1g-dev are required for AppImage apps like Obsdidan
-sudo apt install jq fzf neomutt w3m wl-clipboard emacs libfuse2 zlib1g-dev
-# Install fonts
-# wget -qO- https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/ZedMono.zip | busybox unzip -o -d .local/share/fonts/ZedMono -
+{{ else if eq .chezmoi.os "linux" -}}
+sudo -v
+
+sudo apt update && sudo apt upgrade
+sudo apt install -y {{ (uniq (concat .packages.common .packages.linux.apt)) | join " " }}
+
+# Snaps
+{{- range .packages.linux.snaps }}
+sudo snap install {{ . }}
+{{ end -}}
+
+{{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.arch "arm64")) }}
+# Certain things aren't easily available for ARM Linux
+
+# Newsboat doesn't work as well installed from Snap
+snap install newsboat
+
+# Bitwarden isn't packaged for ARM64 Linux
+sudo apt install build-essential
+sudo npm install -g @bitwarden/cli
+
+{{- else }}
+
+sudo apt install -y newsboat
+
+{{- end }}
+
+# Update the font cache (have to do it somewhere)
 fc-cache -f -v
 
 {{ end -}}

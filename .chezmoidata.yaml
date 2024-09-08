@@ -1,0 +1,21 @@
+packages:
+  common:
+    - 'jq' 
+    - 'fzf' 
+    - 'neomutt' 
+    - 'w3m'
+  darwin:
+    brews:
+    - 'git'
+    casks:
+    - 'alacritty'
+    - ' emacs'
+    - 'font-zed-mono-nerd-font'
+  linux:
+    snaps:
+      - 'firefox'
+    apt:
+      - 'wl-clipboard'
+      - 'emacs' 
+      - 'libfuse2'    # Required for AppImage
+      - 'zlib1g-dev'  # Required for AppImage
