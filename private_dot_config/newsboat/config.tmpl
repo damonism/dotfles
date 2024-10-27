@@ -6,6 +6,7 @@ prepopulate-query-feeds yes
 article-sort-order date-desc
 toggleitemread-jumps-to-next-unread yes
 show-read-feeds no
+datetime-format "%b %d %R"
 reload-threads 10
 reload-time 30
 text-width 80
@@ -13,24 +14,23 @@ text-width 80
 browser "xdg-open %u"
 
 # Vim/Reeder-ish key bindings
-unbind-key ENTER
 unbind-key g # bound to `sort` by default
 unbind-key G # bound to `rev-sort` by default
 unbind-key j
 unbind-key k
 unbind-key J
 unbind-key K
+unbind-key l
 unbind-key m
+unbind-key N
 unbind-key o
 
-bind-key j next articlelist
-bind-key k prev articlelist
 bind-key J next-feed articlelist
 bind-key K prev-feed articlelist
 bind-key j down
+bind-key j next article articlelist
 bind-key k up
-bind-key l open
-bind-key h quit
+bind-key k prev article articlelist
 bind-key g home
 bind-key G end
 bind-key b toggle-source-view
