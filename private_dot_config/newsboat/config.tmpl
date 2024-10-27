@@ -1,0 +1,64 @@
+urls-source "feedbin"
+feedbin-login "{{- (bitwarden "item" "feedbin.com").login.username -}}"
+feedbin-password "{{- (bitwarden "item" "feedbin.com").login.password -}}"
+auto-reload yes
+prepopulate-query-feeds yes
+article-sort-order date-desc
+toggleitemread-jumps-to-next-unread yes
+show-read-feeds no
+reload-threads 10
+reload-time 30
+text-width 80
+
+browser "xdg-open %u"
+
+# Vim/Reeder-ish key bindings
+unbind-key ENTER
+unbind-key g # bound to `sort` by default
+unbind-key G # bound to `rev-sort` by default
+unbind-key j
+unbind-key k
+unbind-key J
+unbind-key K
+unbind-key m
+unbind-key o
+
+bind-key j next articlelist
+bind-key k prev articlelist
+bind-key J next-feed articlelist
+bind-key K prev-feed articlelist
+bind-key j down
+bind-key k up
+bind-key l open
+bind-key h quit
+bind-key g home
+bind-key G end
+bind-key b toggle-source-view
+bind-key U toggle-show-read-feeds
+bind-key u show-urls
+bind-key b open-in-browser-and-mark-read
+bind-key B open-in-browser
+bind-key i sort
+bind-key I rev-sort
+bind-key m toggle-article-read
+
+# Catppuccin Dark Theme
+# https://github.com/catppuccin/newsboat?tab=readme-ov-file
+color listnormal         color15 default
+color listnormal_unread  color2  default
+color listfocus_unread   color2  color0
+color listfocus          default color0
+color background         default default
+color article            default default
+color end-of-text-marker color8  default
+color info               color4  color8
+color hint-separator     default color8
+color hint-description   default color8
+color title              color14 color8
+
+highlight article "^(Feed|Title|Author|Link|Date): .+" color4 default bold
+highlight article "^(Feed|Title|Author|Link|Date):" color14 default bold
+
+highlight article "\\((link|image|video)\\)" color8 default
+highlight article "https?://[^ ]+" color4 default
+highlight article "\[[0-9]+\]" color6 default bold

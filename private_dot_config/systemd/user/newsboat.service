@@ -1,0 +1,9 @@
+[Unit]
+Description=Newsboat RSS Feed Update Daemon
+Wants=newsboat.timer
+
+[Service]
+ExecStart=/snap/bin/newsboat -x reload
+
+[Install]
+WantedBy=default.target
