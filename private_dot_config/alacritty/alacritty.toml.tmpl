@@ -31,3 +31,10 @@ lines = 48
 [window.padding]
 x = 2
 y = 2
+
+{{ if eq .chezmoi.os "linux" }}
+# Required for UTM OpenGL rendering
+[debug]
+renderer = "gles2pure"
+{{ end }}
+
