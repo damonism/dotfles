@@ -1,0 +1,11 @@
+{{- if eq .chezmoi.os "linux" -}}
+#!/bin/sh
+# Run Newsboat in the background every hour to refresh feeds
+
+echo "Installing Newsboat background refresh timer."
+
+systemctl --user enable newsboat.timer
+systemctl --user start newsboat.timer
+
+{{ end -}}
+
