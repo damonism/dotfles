@@ -2,7 +2,7 @@
 #!/bin/sh
 # Run Newsboat in the background every hour to refresh feeds
 
-echo "Installing Newsboat background refresh timer."
+echo "$(basename $0): Installing Newsboat background refresh timer."
 
 systemctl --user enable newsboat.timer
 systemctl --user start newsboat.timer

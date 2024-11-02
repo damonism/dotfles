@@ -4,7 +4,7 @@
 # Install Newsboat config file into ~/snap directory
 # Newsboat config hash: {{ include "private_dot_config/newsboat/config.tmpl" | sha256sum }}
 
-echo "$0: Installing Newsboat config file in snap directory"
+echo "$(basename $0): Installing Newsboat config file in snap directory"
 cp --force ~/.config/newsboat/config  ~/snap/newsboat/current/.newsboat/
 cp --force ~/.config/newsboat/urls ~/snap/newsboat/current/.newsboat/
 
