@@ -43,4 +43,6 @@
 [".config/neomutt/catppuccin"]
     type = "git-repo"
     url = "https://github.com/catppuccin/neomutt.git"
-
+[".tmux/plugins/catppuccin/tmux"]
+    type = "git-repo"
+    url = "https://github.com/catppuccin/tmux.git"
