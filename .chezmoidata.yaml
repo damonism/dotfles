@@ -7,9 +7,10 @@ packages:
   darwin:
     brews:
     - 'git'
+    - 'newsboat'
     casks:
     - 'alacritty'
-    - ' emacs'
+    - 'emacs'
     - 'font-zed-mono-nerd-font'
   linux:
     snaps:
