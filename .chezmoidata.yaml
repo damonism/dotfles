@@ -6,6 +6,7 @@ packages:
     - 'w3m'
     - 'tmux'
     - 'vim'
+    - 'zsh'
   darwin:
     brews:
     - 'git'
