@@ -4,6 +4,7 @@ packages:
     - 'fzf' 
     - 'neomutt' 
     - 'w3m'
+    - 'tmux'
   darwin:
     brews:
     - 'git'
