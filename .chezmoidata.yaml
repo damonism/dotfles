@@ -15,9 +15,11 @@ packages:
     - 'alacritty'
     - 'emacs'
     - 'font-zed-mono-nerd-font'
+    - 'bitwarden'
   linux:
     snaps:
       - 'firefox'
+      - 'bitwarden'
     apt:
       - 'wl-clipboard'
       - 'emacs' 
