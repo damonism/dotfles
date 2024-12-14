@@ -5,6 +5,7 @@ packages:
     - 'neomutt' 
     - 'w3m'
     - 'tmux'
+    - 'vim'
   darwin:
     brews:
     - 'git'
