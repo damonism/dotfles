@@ -20,5 +20,6 @@ packages:
     apt:
       - 'wl-clipboard'
       - 'emacs' 
+      - 'alacritty'
       - 'libfuse2'    # Required for AppImage
       - 'zlib1g-dev'  # Required for AppImage
