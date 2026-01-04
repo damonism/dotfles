@@ -3,10 +3,10 @@
 # See https://forum.manjaro.org/t/root-tip-utility-script-gio-mount-samba-share/100723
 # and https://github.com/pheiduck/smb-share
 
-systemctl --user enable gio-mount-home.service
-systemctl --user start gio-mount-home.service
-systemctl --user enable gio-mount-working.service
-systemctl --user start gio-mount-working.service
+systemctl --user enable gio-mount-downloads.service
+systemctl --user start gio-mount-downloads.service
+# systemctl --user enable gio-mount-working.service
+# systemctl --user start gio-mount-working.service
 
 {{ end -}}
 
