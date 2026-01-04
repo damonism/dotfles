@@ -31,7 +31,7 @@
 # NECESSARY -  MODIFY THESE VARIABLES
 
 # your samba server's hostname or IP address
-HOST="ds918.local"
+HOST="jervis.local"
 
 # the share name on the server
 SHARENAME=$1
@@ -41,7 +41,7 @@ USERNAME=
 WORKGROUP=
 PASSWD=
 
-SMBCREDENTIALS="$HOME/.smbcredentials"
+SMBCREDENTIALS="$HOME/.config/samba/smbcredentials"
 
 ###########################################
 # don't modify below this line 

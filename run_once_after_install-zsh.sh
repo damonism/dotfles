@@ -6,10 +6,10 @@ Y='\033[1;32m'   #'1;32' is Yellow's ANSI color code
 B='\033[0;34m'   #'0;34' is Blue's ANSI color code
 N='\033[0m'
 
-echo "${B}$(basename $0)${N}: ${Y}Setting shell to zsh.${N}"
+echo -e "${B}$(basename $0)${N}: ${Y}Setting shell to zsh.${N}"
 
 if ! command -v zsh > /dev/null; then
-  echo "${Y}zsh not found. Installing...${N}"
+  echo -e "${Y}zsh not found. Installing...${N}"
   case "$(uname -s)" in
   Darwin)
     brew install zsh
@@ -23,12 +23,12 @@ if ! command -v zsh > /dev/null; then
     ;;
   esac
 else
-  echo "${Y}zsh is already installed.${N}"
+  echo -e "${Y}zsh is already installed.${N}"
 fi
 
 if [ "$(basename $SHELL)" != "zsh" ]; then
   echo -e "${Y}Current shell is not zsh. Fixing.${N}"
-  sudo chsh $(which zsh) $USER
+  sudo chsh -s $(which zsh) $USER
 else
-  echo "${Y}Shell is already zsh.${N}"
+  echo -e "${Y}Shell is already zsh.${N}"
 fi

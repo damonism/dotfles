@@ -1,0 +1,14 @@
+[Unit]
+Description=GIO mount smb shares: downloads 
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/home/%u/.local/bin/gio-share.sh downloads
+ExecStop=/home/%u/.local/bin/gio-share.sh downloads -u
+RemainAfterExit=true
+
+[Install]
+WantedBy=default.target
+
