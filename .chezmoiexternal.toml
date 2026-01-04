@@ -28,7 +28,7 @@
     url = "https://github.com/romkatv/powerlevel10k/archive/v1.15.0.tar.gz"
     exact = true
     stripComponents = 1
-[".tmux/plugins/tpm"]
+[".config/tmux/plugins/tpm"]
     url  = "https://github.com/tmux-plugins/tpm"
     type = "git-repo"
     refreshPeriod = "168h"
@@ -43,6 +43,6 @@
 [".config/neomutt/catppuccin"]
     type = "git-repo"
     url = "https://github.com/catppuccin/neomutt.git"
-[".tmux/plugins/catppuccin/tmux"]
+[".config/tmux/plugins/catppuccin/tmux"]
     type = "git-repo"
     url = "https://github.com/catppuccin/tmux.git"
