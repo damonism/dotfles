@@ -46,3 +46,6 @@
 [".config/tmux/plugins/catppuccin/tmux"]
     type = "git-repo"
     url = "https://github.com/catppuccin/tmux.git"
+[".local/share/mc/skins/catppuccin.ini"]
+    type = "file"
+    url = "https://raw.githubusercontent.com/catppuccin/mc/refs/heads/main/catppuccin.ini"
