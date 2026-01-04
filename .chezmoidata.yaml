@@ -11,6 +11,7 @@ packages:
     brews:
     - 'git'
     - 'newsboat'
+    - 'ghostty'
     casks:
     - 'alacritty'
     - 'emacs'
@@ -20,6 +21,7 @@ packages:
     snaps:
       - 'firefox'
       - 'bitwarden'
+      - 'ghostty'
     apt:
       - 'wl-clipboard'
       - 'emacs' 
