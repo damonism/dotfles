@@ -1,6 +1,9 @@
 set nocompatible	" be iMproved, required
 filetype off		" required
 
+" https://stackoverflow.com/questions/23012391/how-and-where-is-my-viminfo-option-set
+set viminfo=%,<800,'10,/50,:100,h,f0,n~/.vim/cache/.viminfo
+
 if &shell =~# 'fish$'
     set shell=sh
 endif
