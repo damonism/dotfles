@@ -1,3 +1,4 @@
+{{- if eq .chezmoi.os "linux" -}}
 #!/bin/bash
 
 R='\033[0;31m'   #'0;31' is Red's ANSI color code
@@ -6,9 +7,11 @@ Y='\033[1;32m'   #'1;32' is Yellow's ANSI color code
 B='\033[0;34m'   #'0;34' is Blue's ANSI color code
 N='\033[0m'
 
-echo "${B}$(basename $0)${N}: ${Y}Loading changes to dconf.${N}"
+ech "${B}$(basename $0)${N}: ${Y}Loading changes to dconf.${N}"
 
 # dconf.ini hash: {{ include "dconf.ini" | sha256sum }}
 if ! command -v dconf > /dev/null; then
   dconf load / < {{ joinPath .chezmoi.sourceDir "dconf.ini" | quote }}
 fi
+
+{{ end -}}
