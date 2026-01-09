@@ -8,11 +8,11 @@ brew update && brew upgrade
 
 # Install packages
 echo "$(basename $0): Installing brew packages."
-brew install {{ (uniq (concat .packages.common .packages.darwin.brews)) | join " " }} 
+brew install --force {{ (uniq (concat .packages.common .packages.darwin.brews)) | join " " }} 
 
 # Install casks
 echo "$(basename $0): Installing brew casks."
-brew install --cask {{ .packages.darwin.casks | join " " }}
+brew install --force --cask {{ .packages.darwin.casks | join " " }}
 
 {{ else if eq .chezmoi.os "linux" -}}
 sudo -v
