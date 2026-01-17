@@ -8,44 +8,35 @@ if &shell =~# 'fish$'
     set shell=sh
 endif
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+" vim-plug
 
-" Launch vim and run :PluginInstall
-" To install from command line: vim +PluginInstall +qall
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
 
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
+call plug#begin('~/.vim/bundle')
 " Syntax highlighting for chezmoi files
-Plugin 'alker0/chezmoi.vim'
+Plug 'alker0/chezmoi.vim'
 
-Plugin 'tpope/vim-fugitive'
-Plugin 'balanceiskey/vim-framer-syntax'
-Plugin 'tpope/vim-sensible'
-Plugin 'junegunn/fzf'
+Plug 'tpope/vim-fugitive'
+Plug 'balanceiskey/vim-framer-syntax'
+Plug 'tpope/vim-sensible'
+Plug 'junegunn/fzf'
 "
 " Colour Schemes
-Plugin 'dracula/vim', { 'name': 'dracula' }
-Plugin 'NLKNguyen/papercolor-theme'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'NLKNguyen/papercolor-theme'
 " Plugin 'oceanic-next'
-Plugin 'joshdick/onedark.vim'
+Plug 'joshdick/onedark.vim'
 " Plugin 'nord-vim'
-Plugin 'drewtempelmeyer/palenight.vim'
+Plug 'drewtempelmeyer/palenight.vim'
 " Plugin 'quantum.vim'
 " Plugin 'ayu-vim'
-Plugin 'ayu-theme/ayu-vim'
-Plugin 'catppuccin/vim', { 'name': 'catppuccin' }
+Plug 'ayu-theme/ayu-vim'
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-syntax on                    " Syntax highlighting
-" Put your non-Plugin stuff after this line
+call plug#end()
 
 " The first [ is entered with CTRL+V,ESC
 set t_8f=[38;2;%lu;%lu;%lum

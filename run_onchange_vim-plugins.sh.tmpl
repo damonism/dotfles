@@ -1,6 +1,12 @@
 #!/bin/sh
+R='\033[0;31m'   #'0;31' is Red's ANSI color code
+G='\033[0;32m'   #'0;32' is Green's ANSI color code
+Y='\033[1;32m'   #'1;32' is Yellow's ANSI color code
+B='\033[0;34m'   #'0;34' is Blue's ANSI color code
+N='\033[0m'
+
+echo -e "${B}$(basename $0)${N}: ${Y}Installing Vim modules via vim-plug.${N}"
 
 # Install Vim Vundle plugins when .vimrc is modified
 # .vimrc hash: {{ include "dot_vim/vimrc" | sha256sum }}
-vim +PluginInstall +qall
-
+vim -es -u $HOME/.vim/vimrc -i NONE -c "PlugInstall" -c "qa"
