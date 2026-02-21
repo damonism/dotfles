@@ -5,7 +5,7 @@ set   mail_check = 120                  # How often to check for new mail (time 
 set   pager_index_lines=10
 unset metoo                             # Remove me from CC headers.
 set   move=no                           # Don't use mbox
-set   mark_old=no			# Don't mark old undread messages as [O]ld
+set   mark_old=no			# Don't mark old unread messages as [O]ld
 set   pager_stop                        # Don't fall through to the next message in the pager
 set   quote_regexp="^ *[a-zA-Z]*[>|][>:|]*"     # Recognize quotes in the pager.
 set   smart_wrap                        # Try to be smart when wrapping around lines in the pager
@@ -16,12 +16,7 @@ set   fast_reply=yes			# Assume the sender is the recipient
 set   include=yes			# Automatically include original in reply
 unset help				# No key help at top of screen
 
-# Accounts
-source "~/.config/neomutt/ic"
-folder-hook $folder 'source ~/.config/neomutt/ic' 
-
 source "~/.config/neomutt/fm"
-folder-hook $folder 'source ~/.config/neomutt/fm'
 
 # Macros for switching accounts
 bind index,pager i noop
@@ -58,7 +53,8 @@ bind index,pager O sidebar-open			# Open the highlighted mailbox
 
 # Macros
 macro index,pager A ":set confirmappend=no delete=yes\n<tag-prefix><save-message>=Archive\n<sync-mailbox>:set confirmappend=yes delete=ask-yes\n"
-macro generic,index,pager,editor \CR ":source ~/.config/neomutt/neomuttrc\n" "Reload mutt's configuration file"
+# Reload config file with 'gr'
+macro index,pager gr "<sync-mailbox><enter-command>source ~/.config/neomutt/neomuttrc<enter>" "Reload config"
 
 # Dracula Theme
 source "~/.config/neomutt/dracula.mutt"
@@ -71,7 +67,7 @@ ignore content- errors-to in-reply-to mime-version
 ignore lines precedence status
 ignore nntp-posting-host path old-return-path received references
 ignore priority >received >>received
-ignore resent- return-path xref path
+ignore resent- return-path xref 
 ignore x400 importance sensitivity autoforward original-encoded-information
 ignore x- thread-
 ignore DomainKey-Signature mail-followup-to
