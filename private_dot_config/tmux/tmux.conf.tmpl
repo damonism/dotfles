@@ -131,11 +131,6 @@ bind-key -T copy-mode-vi ] send-keys -X copy-selection
 
 # bind-key I run-shell 'tmux set-buffer -b pass "$(bw get password 18267036-0499-4d97-b674-ab0600a0af8e)"' \; paste-buffer -b pass -d
 
-# Screensaver
-set -g lock-command "cmatrix -sba"
-set -g lock-after-time 300
-# set -g lock-server on
-
 # tmux theme options
 set -goq @themepack-status-left-area-left-format "#h"
 set -goq @themepack-status-left-area-middle-format "#(whoami)"
@@ -171,7 +166,7 @@ set -g @plugin 'Alkindi42/tmux-bitwarden'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-battery'
 set -g @plugin 'tmux-plugins/tmux-continuum'
-set -g @plugin 'soyuka/tmux-current-pane-hostname'
+# set -g @plugin 'soyuka/tmux-current-pane-hostname'
 
 # Catppuccin theme - https://github.com/catppuccin/tmux
 # Installed by Chezmoi, not TMP
