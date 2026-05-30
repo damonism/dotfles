@@ -13,7 +13,6 @@ packages:
     - 'newsboat'
     - 'ghostty'
     casks:
-    - 'alacritty'
     - 'emacs'
     - 'font-zed-mono-nerd-font'
     - 'bitwarden'
